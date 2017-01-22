@@ -9,38 +9,38 @@ public class DayAndNight {
 	private Player playerBlue = new PlayerBlue();
 	private Random random = new Random();
 	private GameScore gameScore = new GameScore();
-	
+
 	Coordinate[] directions = {
 		new Coordinate(+1, -1,  0), new Coordinate(+1,  0, -1), new Coordinate( 0, +1, -1),
 		new Coordinate(-1, +1,  0), new Coordinate(-1,  0, +1), new Coordinate( 0, -1, +1)
 	};
-	
+
 	public DayAndNight() {
 		hexagons.add(new Hexagon(0, 2, -2));
 		hexagons.add(new Hexagon(1, 1, -2));
 		hexagons.add(new Hexagon(2, 0, -2));
-		
+
 		hexagons.add(new Hexagon(-1, 2, -1));
 		hexagons.add(new Hexagon(0, 1, -1));
 		hexagons.add(new Hexagon(1, 0, -1));
 		hexagons.add(new Hexagon(2, -1, -1));
-		
+
 		hexagons.add(new Hexagon(-2, 2, 0));
 		hexagons.add(new Hexagon(-1, 1, 0));
 		hexagons.add(new Hexagon(0, 0, 0));
 		hexagons.add(new Hexagon(1, -1, 0));
 		hexagons.add(new Hexagon(2, -2, 0));
-		
+
 		hexagons.add(new Hexagon(-2, 1, 1));
 		hexagons.add(new Hexagon(-1, 0, 1));
 		hexagons.add(new Hexagon(0, -1, 1));
 		hexagons.add(new Hexagon(1, -2, 1));
-		
+
 		hexagons.add(new Hexagon(-2, 0, 2));
 		hexagons.add(new Hexagon(-1, -1, 2));
 		hexagons.add(new Hexagon(0, -2, 2));
 	}
-	
+
 	GameScore playGame() {
 		Player currentPlayer = playerRed;
 		do {
@@ -50,7 +50,7 @@ public class DayAndNight {
 		scorePlayfield();
 		return gameScore;
 	}
-	
+
 	private void scorePlayfield() {
 		int numberOfFields = hexagons.size();
 		for (int i = 0; i <= numberOfFields - 1; i++) {
@@ -68,9 +68,16 @@ public class DayAndNight {
 					break;
 				}
 		}
-		System.out.print("Red: " + gameScore.scoreRed + " | ");
-		System.out.print("Blue: " + gameScore.scoreBlue + " | ");
-		System.out.print("White: " + gameScore.scoreWhite + "\n");
+      	if (gameScore.scoreRed > gameScore.scoreBlue) {
+          gameScore.winsRed++;
+        } else if (gameScore.scoreRed < gameScore.scoreBlue) {
+          gameScore.winsBlue++;
+        } else {
+           gameScore.draws++;
+        }
+		//System.out.print("Red: " + gameScore.scoreRed + " | ");
+		//System.out.print("Blue: " + gameScore.scoreBlue + " | ");
+		//System.out.print("White: " + gameScore.scoreWhite + "\n");
 	}
 
 	private Player selectNextPlayer(Player currentPlayer) {
@@ -80,8 +87,8 @@ public class DayAndNight {
 			return playerRed;
 		}
 	}
-	
-	private void playCardRandomly(Player currentPlayer) {		
+
+	private void playCardRandomly(Player currentPlayer) {
 		Hexagon selectedField;
 		do {
 			selectedField = hexagons.get(random.nextInt(hexagons.size()));
@@ -90,7 +97,7 @@ public class DayAndNight {
 		currentPlayer.cards.remove(card);
 		selectedField.color = card.getColor();
 		selectedField.blocked = true;
-		
+
 		int rotationOffset = random.nextInt(6);
 		for (Action action : card.getActions()) {
 			Coordinate direction = directions[rotationOffset % 6];
@@ -117,7 +124,7 @@ public class DayAndNight {
 			}
 		}
 	}
-	
+
 	private Hexagon getHexagonForCoordinate(Coordinate coordinate) {
 		for (Hexagon hexagon : hexagons) {
 			if (hexagon.getCoordinate().equals(coordinate)) {
@@ -129,13 +136,13 @@ public class DayAndNight {
 
 	public static void main(String[] args) {
 		GameStatistics statistics = new GameStatistics();
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 1000; i++) {
 			DayAndNight dan = new DayAndNight();
 			statistics.gameScores.add(dan.playGame());
 		}
 		statistics.showStatistics();
 	}
-	
+
 	@Override
 	public String toString() {
 		for (int z = -2; z <= 2; z++) {
@@ -180,5 +187,5 @@ public class DayAndNight {
 		}
 		return super.toString();
 	}
-	
+
 }
