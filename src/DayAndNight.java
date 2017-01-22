@@ -124,6 +124,29 @@ public class DayAndNight {
                     }
 					neighbour.color = Color.WHITE;
 					break;
+                case FLIP:
+                    if (neighbour.color == Color.BLUE) {
+                      neighbour.color = Color.RED;
+                      neighbour.blocked = false;
+                    } else if (neighbour.color == Color.RED) {
+                      neighbour.color = Color.BLUE;
+                      neighbour.blocked = false;
+                    } else {
+                      // white tile, do nothing at all
+                    }
+					break;
+ 				case NOTHING:
+					// nothing to do
+					break;
+                case LINE_RED:
+					// TODO: IMPLEMENT
+					break;
+                case LINE_BLUE:
+					// TODO: IMPLEMENT
+					break;
+                case LINE_FLIP:
+					// TODO: IMPLEMENT
+					break;
 				default:
 					break;
 				}
