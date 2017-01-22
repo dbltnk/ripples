@@ -107,16 +107,22 @@ public class DayAndNight {
 			if (neighbour != null) {
 				switch (action) {
 				case RED:
+                    if (neighbour.color == Color.BLUE || neighbour.color == Color.WHITE) {
+                      neighbour.blocked = false;
+                    }
 					neighbour.color = Color.RED;
-					neighbour.blocked = false;
 					break;
 				case BLUE:
+                    if (neighbour.color == Color.RED || neighbour.color == Color.WHITE) {
+                      neighbour.blocked = false;
+                    }
 					neighbour.color = Color.BLUE;
-					neighbour.blocked = false;
 					break;
 				case WHITE:
+                    if (neighbour.color == Color.BLUE || neighbour.color == Color.RED) {
+                      neighbour.blocked = false;
+                    }
 					neighbour.color = Color.WHITE;
-					neighbour.blocked = false;
 					break;
 				default:
 					break;
