@@ -4,44 +4,33 @@ import java.util.Random;
 
 
 public class DayAndNight {
-	private List<Hexagon> hexagons = new ArrayList<Hexagon>();
+	private static int gamesToPlay = 1000;
+
+	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
 	private Player playerBlue = new PlayerBlue();
 	private Random random = new Random();
 	private GameScore gameScore = new GameScore();
 
-	Coordinate[] directions = {
+    private Coordinate[] directions = {
 		new Coordinate(+1, -1,  0), new Coordinate(+1,  0, -1), new Coordinate( 0, +1, -1),
 		new Coordinate(-1, +1,  0), new Coordinate(-1,  0, +1), new Coordinate( 0, -1, +1)
 	};
 
-	public DayAndNight() {
-		hexagons.add(new Hexagon(0, 2, -2));
-		hexagons.add(new Hexagon(1, 1, -2));
-		hexagons.add(new Hexagon(2, 0, -2));
-
-		hexagons.add(new Hexagon(-1, 2, -1));
-		hexagons.add(new Hexagon(0, 1, -1));
-		hexagons.add(new Hexagon(1, 0, -1));
-		hexagons.add(new Hexagon(2, -1, -1));
-
-		hexagons.add(new Hexagon(-2, 2, 0));
-		hexagons.add(new Hexagon(-1, 1, 0));
-		hexagons.add(new Hexagon(0, 0, 0));
-		hexagons.add(new Hexagon(1, -1, 0));
-		hexagons.add(new Hexagon(2, -2, 0));
-
-		hexagons.add(new Hexagon(-2, 1, 1));
-		hexagons.add(new Hexagon(-1, 0, 1));
-		hexagons.add(new Hexagon(0, -1, 1));
-		hexagons.add(new Hexagon(1, -2, 1));
-
-		hexagons.add(new Hexagon(-2, 0, 2));
-		hexagons.add(new Hexagon(-1, -1, 2));
-		hexagons.add(new Hexagon(0, -2, 2));
+	public static void main(String[] args) {
+		GameStatistics statistics = new GameStatistics();
+		for (int i = 0; i < gamesToPlay; i++) {
+			DayAndNight dan = new DayAndNight();
+			statistics.gameScores.add(dan.playGame());
+		}
+		statistics.showStatistics();
 	}
 
-	GameScore playGame() {
+    private DayAndNight() {
+		SetupPlayfield();
+	}
+
+    private GameScore playGame() {
 		Player currentPlayer = playerRed;
 		do {
 			playCardRandomly(currentPlayer);
@@ -49,35 +38,6 @@ public class DayAndNight {
 		} while (playerRed.hasCards() || playerBlue.hasCards());
 		scorePlayfield();
 		return gameScore;
-	}
-
-	private void scorePlayfield() {
-		int numberOfFields = hexagons.size();
-		for (int i = 0; i <= numberOfFields - 1; i++) {
-				switch (hexagons.get(i).color) {
-				case RED:
-					gameScore.scoreRed++;
-					break;
-				case BLUE:
-					gameScore.scoreBlue++;
-					break;
-				case WHITE:
-					gameScore.scoreWhite++;
-					break;
-				default:
-					break;
-				}
-		}
-      	if (gameScore.scoreRed > gameScore.scoreBlue) {
-          gameScore.winsRed++;
-        } else if (gameScore.scoreRed < gameScore.scoreBlue) {
-          gameScore.winsBlue++;
-        } else {
-           gameScore.draws++;
-        }
-		//System.out.print("Red: " + gameScore.scoreRed + " | ");
-		//System.out.print("Blue: " + gameScore.scoreBlue + " | ");
-		//System.out.print("White: " + gameScore.scoreWhite + "\n");
 	}
 
 	private Player selectNextPlayer(Player currentPlayer) {
@@ -88,13 +48,24 @@ public class DayAndNight {
 		}
 	}
 
-	private void playCardRandomly(Player currentPlayer) {
+	private Hexagon selectRandomValidField() {
 		Hexagon selectedField;
 		do {
 			selectedField = hexagons.get(random.nextInt(hexagons.size()));
-		} while (selectedField.blocked == true);
+		} while (selectedField.blocked);
+		return selectedField;
+	}
+
+	private Card selectAndRemoveRandomCard(Player currentPlayer) {
 		Card card = currentPlayer.cards.get(random.nextInt(currentPlayer.cards.size()));
 		currentPlayer.cards.remove(card);
+		return card;
+	}
+
+	private void playCardRandomly(Player currentPlayer) {
+		Hexagon selectedField = selectRandomValidField();
+		Card card = selectAndRemoveRandomCard(currentPlayer);
+
 		selectedField.color = card.getColor();
 		selectedField.blocked = true;
 
@@ -131,8 +102,6 @@ public class DayAndNight {
                     } else if (neighbour.color == Color.RED) {
                       neighbour.color = Color.BLUE;
                       neighbour.blocked = false;
-                    } else {
-                      // white tile, do nothing at all
                     }
 					break;
  				case NOTHING:
@@ -154,22 +123,33 @@ public class DayAndNight {
 		}
 	}
 
-	private Hexagon getHexagonForCoordinate(Coordinate coordinate) {
-		for (Hexagon hexagon : hexagons) {
-			if (hexagon.getCoordinate().equals(coordinate)) {
-				return hexagon;
+	private void scorePlayfield() {
+		int numberOfFields = hexagons.size();
+		for (int i = 0; i <= numberOfFields - 1; i++) {
+			switch (hexagons.get(i).color) {
+				case RED:
+					gameScore.scoreRed++;
+					break;
+				case BLUE:
+					gameScore.scoreBlue++;
+					break;
+				case WHITE:
+					gameScore.scoreWhite++;
+					break;
+				default:
+					break;
 			}
 		}
-		return null;
-	}
-
-	public static void main(String[] args) {
-		GameStatistics statistics = new GameStatistics();
-		for (int i = 0; i < 1000; i++) {
-			DayAndNight dan = new DayAndNight();
-			statistics.gameScores.add(dan.playGame());
+		if (gameScore.scoreRed > gameScore.scoreBlue) {
+			gameScore.winsRed++;
+		} else if (gameScore.scoreRed < gameScore.scoreBlue) {
+			gameScore.winsBlue++;
+		} else {
+			gameScore.draws++;
 		}
-		statistics.showStatistics();
+		//System.out.print("Red: " + gameScore.scoreRed + " | ");
+		//System.out.print("Blue: " + gameScore.scoreBlue + " | ");
+		//System.out.print("White: " + gameScore.scoreWhite + "\n");
 	}
 
 	@Override
@@ -215,6 +195,41 @@ public class DayAndNight {
 			System.out.println();
 		}
 		return super.toString();
+	}
+
+	private Hexagon getHexagonForCoordinate(Coordinate coordinate) {
+		for (Hexagon hexagon : hexagons) {
+			if (hexagon.getCoordinate().equals(coordinate)) {
+				return hexagon;
+			}
+		}
+		return null;
+	}
+
+	private void SetupPlayfield() {
+		hexagons.add(new Hexagon(0, 2, -2));
+		hexagons.add(new Hexagon(1, 1, -2));
+		hexagons.add(new Hexagon(2, 0, -2));
+
+		hexagons.add(new Hexagon(-1, 2, -1));
+		hexagons.add(new Hexagon(0, 1, -1));
+		hexagons.add(new Hexagon(1, 0, -1));
+		hexagons.add(new Hexagon(2, -1, -1));
+
+		hexagons.add(new Hexagon(-2, 2, 0));
+		hexagons.add(new Hexagon(-1, 1, 0));
+		hexagons.add(new Hexagon(0, 0, 0));
+		hexagons.add(new Hexagon(1, -1, 0));
+		hexagons.add(new Hexagon(2, -2, 0));
+
+		hexagons.add(new Hexagon(-2, 1, 1));
+		hexagons.add(new Hexagon(-1, 0, 1));
+		hexagons.add(new Hexagon(0, -1, 1));
+		hexagons.add(new Hexagon(1, -2, 1));
+
+		hexagons.add(new Hexagon(-2, 0, 2));
+		hexagons.add(new Hexagon(-1, -1, 2));
+		hexagons.add(new Hexagon(0, -2, 2));
 	}
 
 }
