@@ -1,7 +1,7 @@
 public class PlayerBlue extends Player {
 
 	public PlayerBlue() {
-		/*
+
 		Action[] actions1 = { Action.WHITE, Action.WHITE, Action.RED, Action.BLUE, Action.BLUE, Action.RED };
 		cards.add(new Card(actions1, Color.BLUE));
 		Action[] actions2 = { Action.BLUE, Action.BLUE, Action.BLUE, Action.RED, Action.RED, Action.RED };
@@ -18,9 +18,7 @@ public class PlayerBlue extends Player {
 		cards.add(new Card(actions7, Color.BLUE));
 		Action[] actions8 = { Action.WHITE, Action.NOTHING, Action.LINE_FLIP, Action.BLUE, Action.RED, Action.RED };
 		cards.add(new Card(actions8, Color.BLUE));
-		*/
-		Action[] actions1 = { Action.BLUE, Action.BLUE, Action.BLUE, Action.BLUE, Action.BLUE, Action.BLUE };
-		cards.add(new Card(actions1, Color.BLUE));
+
 	}
 
 }

@@ -4,7 +4,6 @@
     <list default="true" id="2c309c85-c2e2-4c0c-9753-2c6e2b948d2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DayAndNight.java" afterPath="$PROJECT_DIR$/src/DayAndNight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hexagon.java" afterPath="$PROJECT_DIR$/src/Hexagon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayerBlue.java" afterPath="$PROJECT_DIR$/src/PlayerBlue.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayerRed.java" afterPath="$PROJECT_DIR$/src/PlayerRed.java" />
     </list>
@@ -65,8 +64,8 @@
       <file leaf-file-name="DayAndNight.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DayAndNight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="280" column="44" lean-forward="true" selection-start-line="280" selection-start-column="44" selection-end-line="280" selection-end-column="44" />
+            <state relative-caret-position="323">
+              <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,8 +76,8 @@
       <file leaf-file-name="PlayerBlue.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlayerBlue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="87" lean-forward="false" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
+            <state relative-caret-position="340">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,8 +86,8 @@
       <file leaf-file-name="PlayerRed.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="100" lean-forward="false" selection-start-line="21" selection-start-column="100" selection-end-line="21" selection-end-column="100" />
+            <state relative-caret-position="340">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,9 +138,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/GameScore.java" />
+        <option value="$PROJECT_DIR$/src/Hexagon.java" />
         <option value="$PROJECT_DIR$/src/PlayerBlue.java" />
         <option value="$PROJECT_DIR$/src/PlayerRed.java" />
-        <option value="$PROJECT_DIR$/src/Hexagon.java" />
         <option value="$PROJECT_DIR$/src/DayAndNight.java" />
       </list>
     </option>
@@ -481,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485452424999</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="unblock on color change">
+      <created>1485452907500</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1485452907500</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -525,7 +531,8 @@
     <MESSAGE value="1 game" />
     <MESSAGE value="prettified playfield" />
     <MESSAGE value="implemented lines and coloring functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented lines and coloring functions" />
+    <MESSAGE value="unblock on color change" />
+    <option name="LAST_COMMIT_MESSAGE" value="unblock on color change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -915,22 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="100" lean-forward="false" selection-start-line="21" selection-start-column="100" selection-end-line="21" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hexagon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -941,16 +932,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PlayerBlue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="87" lean-forward="false" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DayAndNight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="280" column="44" lean-forward="true" selection-start-line="280" selection-start-column="44" selection-end-line="280" selection-end-column="44" />
+        <state relative-caret-position="323">
+          <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -73,11 +73,14 @@ public class DayAndNight {
 	private void playCardRandomly(Player currentPlayer) {
 		Hexagon selectedField = selectRandomValidField();
 		Card card = selectAndRemoveRandomCard(currentPlayer);
+		int rotationOffset = random.nextInt(6);
+		makeSelectedMove(selectedField, card, rotationOffset);
+	}
 
+	private void makeSelectedMove(Hexagon selectedField, Card card, int rotationOffset) {
 		selectedField.color = card.getColor();
 		selectedField.blocked = true;
 
-		int rotationOffset = random.nextInt(6);
 		for (Action action : card.getActions()) {
 			Coordinate direction = directions[rotationOffset % 6];
 			rotationOffset++;
@@ -287,7 +290,7 @@ public class DayAndNight {
 		// only for testing, should be deactivated
 		/*
 		for (Hexagon hexagon : hexagons) {
-			//hexagon.color = Color.BLUE;
+			hexagon.color = Color.RED;
 			//hexagon.blocked = true;
 		}
 		*/
