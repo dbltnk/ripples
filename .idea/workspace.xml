@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c309c85-c2e2-4c0c-9753-2c6e2b948d2e" name="Default" comment="implemented lines and coloring functions">
+    <list default="true" id="2c309c85-c2e2-4c0c-9753-2c6e2b948d2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DayAndNight.java" afterPath="$PROJECT_DIR$/src/DayAndNight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hexagon.java" afterPath="$PROJECT_DIR$/src/Hexagon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayerBlue.java" afterPath="$PROJECT_DIR$/src/PlayerBlue.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayerRed.java" afterPath="$PROJECT_DIR$/src/PlayerRed.java" />
     </list>
@@ -34,8 +35,8 @@
       <file leaf-file-name="Hexagon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hexagon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+            <state relative-caret-position="374">
+              <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -61,15 +62,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DayAndNight.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DayAndNight.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DayAndNight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="117" column="43" lean-forward="false" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
+            <state relative-caret-position="266">
+              <caret line="280" column="44" lean-forward="true" selection-start-line="280" selection-start-column="44" selection-end-line="280" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3922#3923#0" expanded="true" />
-                <element signature="e#3946#3947#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,18 +77,18 @@
       <file leaf-file-name="PlayerBlue.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlayerBlue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="62" lean-forward="true" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
+            <state relative-caret-position="272">
+              <caret line="16" column="87" lean-forward="false" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerRed.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerRed.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+            <state relative-caret-position="357">
+              <caret line="21" column="100" lean-forward="false" selection-start-line="21" selection-start-column="100" selection-end-line="21" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -142,6 +141,7 @@
         <option value="$PROJECT_DIR$/src/GameScore.java" />
         <option value="$PROJECT_DIR$/src/PlayerBlue.java" />
         <option value="$PROJECT_DIR$/src/PlayerRed.java" />
+        <option value="$PROJECT_DIR$/src/Hexagon.java" />
         <option value="$PROJECT_DIR$/src/DayAndNight.java" />
       </list>
     </option>
@@ -474,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485449264611</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implemented lines and coloring functions">
+      <created>1485452424999</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1485452424999</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -484,13 +491,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30972517" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30972517" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -545,8 +552,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -612,8 +617,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -679,8 +682,6 @@
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -739,8 +740,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -799,8 +798,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -859,8 +856,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -928,39 +923,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="100" lean-forward="false" selection-start-line="21" selection-start-column="100" selection-end-line="21" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hexagon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        <state relative-caret-position="374">
+          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlayerBlue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="87" lean-forward="false" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DayAndNight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="117" column="43" lean-forward="false" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
+        <state relative-caret-position="266">
+          <caret line="280" column="44" lean-forward="true" selection-start-line="280" selection-start-column="44" selection-end-line="280" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3946#3947#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlayerBlue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="62" lean-forward="true" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlayerRed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>

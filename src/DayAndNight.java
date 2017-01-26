@@ -88,21 +88,12 @@ public class DayAndNight {
 			if (neighbour != null) {
 				switch (action) {
 				case RED:
-                    if (neighbour.color == Color.BLUE || neighbour.color == Color.WHITE) {
-                      neighbour.blocked = false;
-                    }
 					RecolorOne(Color.RED, neighbour);
 					break;
 				case BLUE:
-                    if (neighbour.color == Color.RED || neighbour.color == Color.WHITE) {
-                      neighbour.blocked = false;
-                    }
 					RecolorOne(Color.BLUE, neighbour);
 					break;
 				case WHITE:
-                    if (neighbour.color == Color.BLUE || neighbour.color == Color.RED) {
-                      neighbour.blocked = false;
-                    }
 					RecolorOne(Color.WHITE, neighbour);
 					break;
                 case FLIP:
@@ -128,6 +119,9 @@ public class DayAndNight {
 	}
 
 	private void RecolorOne(Color color, Hexagon hex) {
+		if (hex.color != color) {
+			hex.blocked = false;
+		}
 		hex.color = color;
 	}
 
@@ -141,9 +135,11 @@ public class DayAndNight {
 		switch (hex.color) {
 			case BLUE:
 				RecolorOne(Color.RED, hex);
+				hex.blocked = false;
 				break;
 			case RED:
 				RecolorOne(Color.BLUE, hex);
+				hex.blocked = false;
 				break;
 			default:
 				break;
@@ -291,7 +287,8 @@ public class DayAndNight {
 		// only for testing, should be deactivated
 		/*
 		for (Hexagon hexagon : hexagons) {
-			hexagon.color = Color.BLUE;
+			//hexagon.color = Color.BLUE;
+			//hexagon.blocked = true;
 		}
 		*/
 	}

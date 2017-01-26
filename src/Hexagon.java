@@ -28,4 +28,8 @@ public class Hexagon {
 		return coordinate;
 	}
 
+	public Hexagon setBlocked(boolean b) {
+		blocked = b;
+		return this;
+	}
 }

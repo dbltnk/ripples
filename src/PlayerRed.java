@@ -19,7 +19,7 @@ public class PlayerRed extends Player {
 		Action[] actions8 = { Action.WHITE, Action.NOTHING, Action.LINE_FLIP, Action.RED, Action.BLUE, Action.BLUE };
 		cards.add(new Card(actions8, Color.RED));
 		*/
-		Action[] actions1 = { Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING };
+		Action[] actions1 = { Action.RED, Action.RED, Action.RED, Action.RED, Action.RED, Action.RED };
 		cards.add(new Card(actions1, Color.RED));
 	}
 
