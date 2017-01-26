@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 public class DayAndNight {
-	private static int gamesToPlay = 1000;
+	private static int gamesToPlay = 1;
 
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
@@ -23,7 +23,7 @@ public class DayAndNight {
 			DayAndNight dan = new DayAndNight();
 			statistics.gameScores.add(dan.playGame());
 			if (gamesToPlay == 1) {
-				dan.hexagons.toString();
+				System.out.println(dan);
 				System.out.print("Red: " + statistics.gameScores.get(0).scoreRed + " | ");
 				System.out.print("Blue: " + statistics.gameScores.get(0).scoreBlue + " | ");
 				System.out.print("White: " + statistics.gameScores.get(0).scoreWhite + "\n");
