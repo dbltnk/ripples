@@ -81,52 +81,101 @@ public class DayAndNight {
 		for (Action action : card.getActions()) {
 			Coordinate direction = directions[rotationOffset % 6];
 			rotationOffset++;
+
 			Coordinate neighbourCoordinate = selectedField.getCoordinate().addCoordinate(direction);
 			Hexagon neighbour = getHexagonForCoordinate(neighbourCoordinate);
+
 			if (neighbour != null) {
 				switch (action) {
 				case RED:
                     if (neighbour.color == Color.BLUE || neighbour.color == Color.WHITE) {
                       neighbour.blocked = false;
                     }
-					neighbour.color = Color.RED;
+					RecolorOne(Color.RED, neighbour);
 					break;
 				case BLUE:
                     if (neighbour.color == Color.RED || neighbour.color == Color.WHITE) {
                       neighbour.blocked = false;
                     }
-					neighbour.color = Color.BLUE;
+					RecolorOne(Color.BLUE, neighbour);
 					break;
 				case WHITE:
                     if (neighbour.color == Color.BLUE || neighbour.color == Color.RED) {
                       neighbour.blocked = false;
                     }
-					neighbour.color = Color.WHITE;
+					RecolorOne(Color.WHITE, neighbour);
 					break;
                 case FLIP:
-                    if (neighbour.color == Color.BLUE) {
-                      neighbour.color = Color.RED;
-                      neighbour.blocked = false;
-                    } else if (neighbour.color == Color.RED) {
-                      neighbour.color = Color.BLUE;
-                      neighbour.blocked = false;
-                    }
+					FlipcolorOne(neighbour);
 					break;
  				case NOTHING:
 					// nothing to do
 					break;
                 case LINE_RED:
-					// TODO: IMPLEMENT
+					RecolorMany(Color.RED, FindHexagonsInLine(neighbour, direction));
 					break;
                 case LINE_BLUE:
-					// TODO: IMPLEMENT
+					RecolorMany(Color.BLUE, FindHexagonsInLine(neighbour, direction));
 					break;
                 case LINE_FLIP:
-					// TODO: IMPLEMENT
+					FlipcolorMany(FindHexagonsInLine(neighbour, direction));
 					break;
 				default:
 					break;
 				}
+			}
+		}
+	}
+
+	private void RecolorOne(Color color, Hexagon hex) {
+		hex.color = color;
+	}
+
+	private void RecolorMany(Color color, List<Hexagon> hexes) {
+		for (Hexagon hexagon : hexes) {
+			RecolorOne(color, hexagon);
+		}
+	}
+
+	private void FlipcolorOne(Hexagon hex) {
+		switch (hex.color) {
+			case BLUE:
+				RecolorOne(Color.RED, hex);
+				break;
+			case RED:
+				RecolorOne(Color.BLUE, hex);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void FlipcolorMany(List<Hexagon> hexes) {
+		for (Hexagon hexagon : hexes) {
+			FlipcolorOne(hexagon);
+		}
+	}
+
+	// this includes the origin hex
+	private List<Hexagon> FindHexagonsInLine(Hexagon origin, Coordinate direction) {
+		List<Hexagon> l = new ArrayList<>();
+		Hexagon current = origin;
+		l.add(origin);
+
+		if (direction == new Coordinate(0,0,0) ) {
+			return l;
+		}
+
+		while(true)
+		{
+			Coordinate nextNeighbourCoordinate = current.getCoordinate().addCoordinate(direction);
+			Hexagon nextNeighbour = getHexagonForCoordinate(nextNeighbourCoordinate);
+			if (nextNeighbour == null) {
+				return l;
+			}
+			else {
+				l.add(nextNeighbour);
+				current = nextNeighbour;
 			}
 		}
 	}
@@ -238,6 +287,13 @@ public class DayAndNight {
 		hexagons.add(new Hexagon(-2, 0, 2));
 		hexagons.add(new Hexagon(-1, -1, 2));
 		hexagons.add(new Hexagon(0, -2, 2));
+
+		// only for testing, should be deactivated
+		/*
+		for (Hexagon hexagon : hexagons) {
+			hexagon.color = Color.BLUE;
+		}
+		*/
 	}
 
 }
