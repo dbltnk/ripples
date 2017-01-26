@@ -162,39 +162,42 @@ public class DayAndNight {
 		for (int z = -2; z <= 2; z++) {
 			for (int x = -2; x <= 2; x++) {
 				for (Hexagon hexagon : hexagons) {
-					if (hexagon.blocked) {
 						if (hexagon.getX() == x && hexagon.getZ() == z) {
+							if (hexagons.indexOf(hexagon) == 0 || hexagons.indexOf(hexagon) == 16) {
+								System.out.print("  ");
+							}
+							if (hexagons.indexOf(hexagon) == 3 || hexagons.indexOf(hexagon) == 12) {
+								System.out.print(" ");
+							}
 							switch (hexagon.color) {
 							case RED:
-								System.out.print("(R)");
+								if (hexagon.blocked) {
+									System.out.print("[R]");
+								}
+								else {
+									System.out.print("(R)");
+								}
 								break;
 							case BLUE:
-								System.out.print("(B)");
+								if (hexagon.blocked) {
+									System.out.print("[B]");
+								}
+								else {
+									System.out.print("(B)");
+								}
 								break;
 							case WHITE:
-								System.out.print("(W)");
+								if (hexagon.blocked) {
+									System.out.print("[W]");
+								}
+								else {
+									System.out.print("(W)");
+								}
 								break;
 							default:
 								break;
 							}
 						}
-					} else {
-						if (hexagon.getX() == x && hexagon.getZ() == z) {
-							switch (hexagon.color) {
-							case RED:
-								System.out.print(" R ");
-								break;
-							case BLUE:
-								System.out.print(" B ");
-								break;
-							case WHITE:
-								System.out.print(" W ");
-								break;
-							default:
-								break;
-							}
-						}
-					}
 				}
 			}
 			System.out.println();
