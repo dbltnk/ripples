@@ -2,6 +2,8 @@ public class PlayerBlue extends Player {
 
 	public PlayerBlue() {
 
+		color = Color.BLUE;
+
 		Action[] actions1 = { Action.WHITE, Action.WHITE, Action.RED, Action.BLUE, Action.BLUE, Action.RED };
 		cards.add(new Card(actions1, Color.BLUE));
 		Action[] actions2 = { Action.BLUE, Action.BLUE, Action.BLUE, Action.RED, Action.RED, Action.RED };

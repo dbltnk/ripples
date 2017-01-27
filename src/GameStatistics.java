@@ -28,7 +28,7 @@ public class GameStatistics {
 		double averageWinsBlue = winsBlue / totalGamesPlayed ;
 		double averageDraws = draws / totalGamesPlayed;
 
-		System.out.println("Statitics");
+		System.out.println("Statistics");
 		System.out.println("Games Played: " + totalGamesPlayed);
 		System.out.println("White Tiles Total: " + totalScoreWhite + "\tWhite Tiles Average: " + averageScoreWhite);
 		System.out.println("Red Tiles Total: " + totalScoreRed + "\tRed Tiles Average: " + averageScoreRed);
