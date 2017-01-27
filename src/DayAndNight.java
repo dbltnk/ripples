@@ -28,17 +28,119 @@ public class DayAndNight {
 				System.out.print("Blue: " + statistics.gameScores.get(0).scoreBlue + " | ");
 				System.out.print("White: " + statistics.gameScores.get(0).scoreWhite + "\n");
 			}
+			System.out.println("--- Power Level Post-Game ---");
+			Evaluate(dan.hexagons, dan.playerRed, dan.playerBlue);
+			System.out.println("----------------------------");
 		}
 		if (gamesToPlay > 1) {
 			statistics.showStatistics();
 		}
 	}
 
-    private DayAndNight() {
+	private static void Evaluate(List<Hexagon> playfield, Player playerRed, Player playerBlue) {
+		float redPower = 0;
+		float bluePower = 0;
+
+		// evaluate playfield
+		int redHexes = 0;
+		int blueHexes = 0;
+		int whiteHexes = 0;
+		for (Hexagon hex : playfield) {
+			switch (hex.color) {
+				case RED:
+					redHexes++;
+					break;
+				case BLUE:
+					blueHexes++;
+					break;
+				case WHITE:
+					whiteHexes++;
+					break;
+				default:
+					break;
+			}
+		}
+
+		// evaluate hands
+		float valueHandRed = evaluateHand(playerRed);
+		float valueHandBlue = evaluateHand(playerBlue);
+
+		// calculate power
+		redPower = redHexes - blueHexes + valueHandRed - valueHandBlue;
+		bluePower = blueHexes - redHexes + valueHandBlue - valueHandRed;
+		System.out.println("Red player power level: " + redPower);
+		System.out.println("Blue player power level: " + bluePower);
+	}
+
+	private static float evaluateHand(Player player) {
+		float valuePlayerColor = 1f;
+		float valueOpponentColor = -1f;
+		float valueWhite = 0f;
+		float valueFlip = 0.5f;
+		float valueNothing = 0f;
+		float lineHexAffectExpectation = 4f;
+
+		float handValue = 0;
+		for (Card card : player.cards) {
+			float cardValue = 0;
+			switch (card.getColor()) {
+				case RED:
+					cardValue = cardValue + valuePlayerColor;
+					break;
+				case BLUE:
+					cardValue = cardValue + valueOpponentColor;
+					break;
+				case WHITE:
+					cardValue = cardValue + valueWhite;
+					break;
+				default:
+					break;
+			}
+			for (Action action : card.getActions()) {
+				switch (action) {
+					case RED:
+						cardValue = cardValue + valuePlayerColor;
+						break;
+					case BLUE:
+						cardValue = cardValue + valueOpponentColor;
+						break;
+					case WHITE:
+						cardValue = cardValue + valueWhite;
+						break;
+					case FLIP:
+						cardValue = cardValue + valueFlip;
+						break;
+					case NOTHING:
+						cardValue = cardValue + valueNothing;
+						break;
+					case LINE_RED:
+						cardValue = cardValue + valuePlayerColor * lineHexAffectExpectation;
+						break;
+					case LINE_BLUE:
+						cardValue = cardValue + valueOpponentColor * lineHexAffectExpectation;
+						break;
+					case LINE_FLIP:
+						cardValue = cardValue + valueFlip * lineHexAffectExpectation;
+						break;
+					default:
+						break;
+				}
+			}
+			//System.out.println("Card value: " + cardValue);
+			handValue += cardValue;
+		}
+		//System.out.println("Hand value: " + handValue);
+		return handValue;
+	}
+
+	private DayAndNight() {
 		SetupPlayfield();
 	}
 
     private GameScore playGame() {
+		System.out.println("--- Power Level Pre-Game ---");
+		Evaluate(hexagons, playerRed, playerBlue);
+		System.out.println("----------------------------");
 		Player currentPlayer = playerRed;
 		do {
 			playCardRandomly(currentPlayer);
