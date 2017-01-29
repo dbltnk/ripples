@@ -234,7 +234,18 @@ public class DayAndNight {
 		}
 
 		//get best move
-		Move moveToMake = moves.peek();
+		List<Move> bestPotentialMoves = new ArrayList<>();
+		for (Move move : moves) {
+			int highestScore = moves.peek().scoreChange;
+			if (move.scoreChange == highestScore) {
+				bestPotentialMoves.add(move);
+			}
+		}
+		int numberOfPotentialMoves = bestPotentialMoves.size();
+		System.out.println(numberOfPotentialMoves);
+		System.out.println(moves);
+		int randomNumber = random.nextInt(numberOfPotentialMoves);
+		Move moveToMake = bestPotentialMoves.get(randomNumber);
 
 		//make move
 		makeSelectedMove(moveToMake.hex, moveToMake.card, moveToMake.rotationOffset);
