@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class DayAndNight {
 	private static int gamesToPlay = 1;
@@ -166,11 +167,87 @@ public class DayAndNight {
     private GameScore playGame() {
 		Player currentPlayer = playerRed;
 		do {
-			playCardRandomly(currentPlayer);
+			//playCardRandomly(currentPlayer);
+			makeInformedDecision(currentPlayer);
 			currentPlayer = selectNextPlayer(currentPlayer);
 		} while (playerRed.hasCards() || playerBlue.hasCards());
 		scorePlayfield();
 		return gameScore;
+	}
+
+	private void makeInformedDecision(Player currentPlayer) {
+		//score playfield
+		int initialScore = EvaluatePlayfield(hexagons, currentPlayer);
+		//System.out.println(initialScore);
+
+		//save playfield
+		List<Hexagon> initialPlayfield = new ArrayList<>();
+		initialPlayfield = hexagons;
+		//System.out.println(initialPlayfield);
+
+		//set up move DB
+		Comparator<Move> comparator = new MoveComparator();
+		PriorityQueue<Move> moves = new PriorityQueue<Move>(10, comparator);
+
+		//for hexes, cards, rotations
+		for (Hexagon hex : hexagons) {
+			if (hex.blocked == false) {
+				for (Card card : currentPlayer.cards) {
+					int numberOfRotations = 6;
+					for (int i = 0; i <= numberOfRotations - 1; i++) {
+						Move move = new Move();
+						move.hex = hex;
+						move.card = card;
+						move.rotationOffset = i;
+						//make move
+						makeSelectedMove(hex, card, i);
+						//score playfield
+						int newScore = EvaluatePlayfield(hexagons, currentPlayer);
+						//calculate change
+						int scoreChange = newScore - initialScore;
+						move.scoreChange = scoreChange;
+						//store change and move in DB
+						moves.add(move);
+						//load playfield
+						hexagons = initialPlayfield;
+					}
+				}
+			}
+		}
+
+		//get best move
+		Move moveToMake = moves.peek();
+
+		//make move
+		makeSelectedMove(moveToMake.hex, moveToMake.card, moveToMake.rotationOffset);
+	}
+
+	private int EvaluatePlayfield(List<Hexagon> playfield, Player currentPlayer) {
+		int redHexes = 0;
+		int blueHexes = 0;
+		int whiteHexes = 0;
+		for (Hexagon hex : playfield) {
+			switch (hex.color) {
+				case RED:
+					redHexes++;
+					break;
+				case BLUE:
+					blueHexes++;
+					break;
+				case WHITE:
+					whiteHexes++;
+					break;
+				default:
+					break;
+			}
+		}
+
+		if (currentPlayer.color == Color.RED) {
+			return redHexes - blueHexes;
+		}
+		else {
+			return blueHexes - redHexes;
+		}
 	}
 
 	private Player selectNextPlayer(Player currentPlayer) {
