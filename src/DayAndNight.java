@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 1;
+	private static int gamesToPlay = 100;
 
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
@@ -179,12 +179,15 @@ public class DayAndNight {
 		//score playfield
 		int initialScore = EvaluatePlayfield(hexagons, currentPlayer);
 		//System.out.println(initialScore);
-		System.out.println(" ");
-		renderPlayfield(hexagons);
+		//System.out.println(" ");
+		//renderPlayfield(hexagons);
 
 		//save playfield
 		List<Hexagon> initialPlayfield = new ArrayList<>();
-		initialPlayfield = hexagons;
+		for(Hexagon hex : hexagons) {
+			initialPlayfield.add(hex.clone());
+		}
+
 		//System.out.println(initialPlayfield);
 
 		//set up move DB
@@ -211,7 +214,20 @@ public class DayAndNight {
 						//store change and move in DB
 						moves.add(move);
 						//load playfield
-						hexagons = initialPlayfield;
+						//System.out.println("hexagons before:");
+						//renderPlayfield(hexagons);
+						//System.out.println("initial before:");
+						//renderPlayfield(initialPlayfield);
+						for(Hexagon h : initialPlayfield) {
+							for(Hexagon x : hexagons) {
+								x.blocked = h.blocked;
+								x.color = h.color;
+							}
+						}
+						//System.out.println("hexagons after:");
+						//renderPlayfield(hexagons);
+						//System.out.println("initial after:");
+						//renderPlayfield(initialPlayfield);
 					}
 				}
 			}
@@ -410,55 +426,8 @@ public class DayAndNight {
 		}
 	}
 
-	@Override
-	public String toString() {
-		for (int z = -2; z <= 2; z++) {
-			for (int x = -2; x <= 2; x++) {
-				for (Hexagon hexagon : hexagons) {
-						if (hexagon.getX() == x && hexagon.getZ() == z) {
-							if (hexagons.indexOf(hexagon) == 0 || hexagons.indexOf(hexagon) == 16) {
-								System.out.print("  ");
-							}
-							if (hexagons.indexOf(hexagon) == 3 || hexagons.indexOf(hexagon) == 12) {
-								System.out.print(" ");
-							}
-							switch (hexagon.color) {
-							case RED:
-								if (hexagon.blocked) {
-									System.out.print("[R]");
-								}
-								else {
-									System.out.print("(R)");
-								}
-								break;
-							case BLUE:
-								if (hexagon.blocked) {
-									System.out.print("[B]");
-								}
-								else {
-									System.out.print("(B)");
-								}
-								break;
-							case WHITE:
-								if (hexagon.blocked) {
-									System.out.print("[W]");
-								}
-								else {
-									System.out.print("(W)");
-								}
-								break;
-							default:
-								break;
-							}
-						}
-				}
-			}
-			System.out.println();
-		}
-		return super.toString();
-	}
-
 	private String renderPlayfield(List<Hexagon> playfield) {
+		//System.out.print(" ");
 		for (int z = -2; z <= 2; z++) {
 			for (int x = -2; x <= 2; x++) {
 				for (Hexagon hexagon : playfield) {

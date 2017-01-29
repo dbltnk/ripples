@@ -32,4 +32,11 @@ public class Hexagon {
 		blocked = b;
 		return this;
 	}
+
+	public Hexagon clone(){
+		Hexagon hex = new Hexagon(this.getX(), this.getY(), this.getZ());
+		hex.color = this.color;
+		hex.blocked = this.blocked;
+		return hex;
+	}
 }
