@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 1000;
+	private static int gamesToPlay = 1;
 
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
@@ -23,9 +23,9 @@ public class DayAndNight {
 		for (int i = 0; i < gamesToPlay; i++) {
 			DayAndNight dan = new DayAndNight();
 			if (gamesToPlay == 1) {
-				System.out.println("--- Power Level Pre-Game ---");
-				Evaluate(dan.hexagons, dan.playerRed, dan.playerBlue);
-				System.out.println("----------------------------");
+				//System.out.println("--- Power Level Pre-Game ---");
+				//Evaluate(dan.hexagons, dan.playerRed, dan.playerBlue);
+				//System.out.println("----------------------------");
 			}
 			statistics.gameScores.add(dan.playGame());
 			if (gamesToPlay == 1) {
@@ -33,9 +33,9 @@ public class DayAndNight {
 				System.out.print("Red: " + statistics.gameScores.get(0).scoreRed + " | ");
 				System.out.print("Blue: " + statistics.gameScores.get(0).scoreBlue + " | ");
 				System.out.print("White: " + statistics.gameScores.get(0).scoreWhite + "\n");
-				System.out.println("--- Power Level Post-Game ---");
-				Evaluate(dan.hexagons, dan.playerRed, dan.playerBlue);
-				System.out.println("----------------------------");
+				//System.out.println("--- Power Level Post-Game ---");
+				//Evaluate(dan.hexagons, dan.playerRed, dan.playerBlue);
+				//System.out.println("----------------------------");
 			}
 		}
 		if (gamesToPlay > 1) {
@@ -178,17 +178,12 @@ public class DayAndNight {
 	private void makeInformedDecision(Player currentPlayer) {
 		//score playfield
 		int initialScore = EvaluatePlayfield(hexagons, currentPlayer);
-		//System.out.println(initialScore);
-		//System.out.println(" ");
-		//renderPlayfield(hexagons);
 
 		//save playfield
 		List<Hexagon> initialPlayfield = new ArrayList<>();
 		for(Hexagon hex : hexagons) {
 			initialPlayfield.add(hex.clone());
 		}
-
-		//System.out.println(initialPlayfield);
 
 		//set up move DB
 		Comparator<Move> comparator = new MoveComparator();
@@ -214,21 +209,11 @@ public class DayAndNight {
 						//store change and move in DB
 						moves.add(move);
 						//load playfield
-						//System.out.println("hexagons before:");
-						//renderPlayfield(hexagons);
-						//System.out.println("initial before:");
-						//renderPlayfield(initialPlayfield);
-
 						int numberOfHexFields = hexagons.size();
 						for (int j = 0; j < numberOfHexFields; j++) {
 							hexagons.get(j).blocked = initialPlayfield.get(j).blocked;
 							hexagons.get(j).color = initialPlayfield.get(j).color;
 						}
-
-						//System.out.println("hexagons after:");
-						//renderPlayfield(hexagons);
-						//System.out.println("initial after:");
-						//renderPlayfield(initialPlayfield);
 					}
 				}
 			}
@@ -243,14 +228,19 @@ public class DayAndNight {
 			}
 		}
 		int numberOfPotentialMoves = bestPotentialMoves.size();
-		//System.out.println(numberOfPotentialMoves);
-		//System.out.println(moves);
 		int randomNumber = random.nextInt(numberOfPotentialMoves);
 		Move moveToMake = bestPotentialMoves.get(randomNumber);
 
 		//make move
 		makeSelectedMove(moveToMake.hex, moveToMake.card, moveToMake.rotationOffset);
 		currentPlayer.cards.remove(moveToMake.card);
+
+		//debug code for single games, comment out if many games
+		System.out.println("-----------------");
+		System.out.println(currentPlayer.color.toString() + " plays card: " + moveToMake.card.getName());
+		renderPlayfield(hexagons);
+		System.out.println("Red: " + EvaluatePlayfield(hexagons, playerRed) + " Blue: " + EvaluatePlayfield(hexagons, playerBlue));
+		System.out.println("-----------------");
 	}
 
 	private int EvaluatePlayfield(List<Hexagon> playfield, Player currentPlayer) {
