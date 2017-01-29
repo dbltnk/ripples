@@ -29,7 +29,7 @@ public class DayAndNight {
 			}
 			statistics.gameScores.add(dan.playGame());
 			if (gamesToPlay == 1) {
-				System.out.println(dan);
+				//System.out.println(dan);
 				System.out.print("Red: " + statistics.gameScores.get(0).scoreRed + " | ");
 				System.out.print("Blue: " + statistics.gameScores.get(0).scoreBlue + " | ");
 				System.out.print("White: " + statistics.gameScores.get(0).scoreWhite + "\n");
@@ -179,6 +179,8 @@ public class DayAndNight {
 		//score playfield
 		int initialScore = EvaluatePlayfield(hexagons, currentPlayer);
 		//System.out.println(initialScore);
+		System.out.println(" ");
+		renderPlayfield(hexagons);
 
 		//save playfield
 		List<Hexagon> initialPlayfield = new ArrayList<>();
@@ -220,6 +222,7 @@ public class DayAndNight {
 
 		//make move
 		makeSelectedMove(moveToMake.hex, moveToMake.card, moveToMake.rotationOffset);
+		currentPlayer.cards.remove(moveToMake.card);
 	}
 
 	private int EvaluatePlayfield(List<Hexagon> playfield, Player currentPlayer) {
@@ -448,6 +451,53 @@ public class DayAndNight {
 								break;
 							}
 						}
+				}
+			}
+			System.out.println();
+		}
+		return super.toString();
+	}
+
+	private String renderPlayfield(List<Hexagon> playfield) {
+		for (int z = -2; z <= 2; z++) {
+			for (int x = -2; x <= 2; x++) {
+				for (Hexagon hexagon : playfield) {
+					if (hexagon.getX() == x && hexagon.getZ() == z) {
+						if (playfield.indexOf(hexagon) == 0 || playfield.indexOf(hexagon) == 16) {
+							System.out.print("  ");
+						}
+						if (playfield.indexOf(hexagon) == 3 || playfield.indexOf(hexagon) == 12) {
+							System.out.print(" ");
+						}
+						switch (hexagon.color) {
+							case RED:
+								if (hexagon.blocked) {
+									System.out.print("[R]");
+								}
+								else {
+									System.out.print("(R)");
+								}
+								break;
+							case BLUE:
+								if (hexagon.blocked) {
+									System.out.print("[B]");
+								}
+								else {
+									System.out.print("(B)");
+								}
+								break;
+							case WHITE:
+								if (hexagon.blocked) {
+									System.out.print("[W]");
+								}
+								else {
+									System.out.print("(W)");
+								}
+								break;
+							default:
+								break;
+						}
+					}
 				}
 			}
 			System.out.println();

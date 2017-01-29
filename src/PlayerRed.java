@@ -4,6 +4,10 @@ public class PlayerRed extends Player {
 
 		color = Color.RED;
 
+		Action[] actions1 = { Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING, Action.NOTHING };
+		cards.add(new Card(actions1, Color.RED));
+
+		/*
 		Action[] actions1 = { Action.WHITE, Action.WHITE, Action.BLUE, Action.RED, Action.RED, Action.BLUE };
 		cards.add(new Card(actions1, Color.RED));
 		Action[] actions2 = { Action.RED, Action.RED, Action.RED, Action.BLUE, Action.BLUE, Action.BLUE };
@@ -20,7 +24,7 @@ public class PlayerRed extends Player {
 		cards.add(new Card(actions7, Color.RED));
 		Action[] actions8 = { Action.WHITE, Action.NOTHING, Action.LINE_FLIP, Action.RED, Action.BLUE, Action.BLUE };
 		cards.add(new Card(actions8, Color.RED));
-
+		*/
 	}
 
 }
