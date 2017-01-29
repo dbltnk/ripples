@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 100;
+	private static int gamesToPlay = 1000;
 
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
@@ -199,7 +199,7 @@ public class DayAndNight {
 			if (hex.blocked == false) {
 				for (Card card : currentPlayer.cards) {
 					int numberOfRotations = 6;
-					for (int i = 0; i <= numberOfRotations - 1; i++) {
+					for (int i = 0; i < numberOfRotations; i++) {
 						Move move = new Move();
 						move.hex = hex;
 						move.card = card;
@@ -218,12 +218,13 @@ public class DayAndNight {
 						//renderPlayfield(hexagons);
 						//System.out.println("initial before:");
 						//renderPlayfield(initialPlayfield);
-						for(Hexagon h : initialPlayfield) {
-							for(Hexagon x : hexagons) {
-								x.blocked = h.blocked;
-								x.color = h.color;
-							}
+
+						int numberOfHexFields = hexagons.size();
+						for (int j = 0; j < numberOfHexFields; j++) {
+							hexagons.get(j).blocked = initialPlayfield.get(j).blocked;
+							hexagons.get(j).color = initialPlayfield.get(j).color;
 						}
+
 						//System.out.println("hexagons after:");
 						//renderPlayfield(hexagons);
 						//System.out.println("initial after:");
@@ -242,8 +243,8 @@ public class DayAndNight {
 			}
 		}
 		int numberOfPotentialMoves = bestPotentialMoves.size();
-		System.out.println(numberOfPotentialMoves);
-		System.out.println(moves);
+		//System.out.println(numberOfPotentialMoves);
+		//System.out.println(moves);
 		int randomNumber = random.nextInt(numberOfPotentialMoves);
 		Move moveToMake = bestPotentialMoves.get(randomNumber);
 
@@ -413,7 +414,7 @@ public class DayAndNight {
 
 	private void scorePlayfield() {
 		int numberOfFields = hexagons.size();
-		for (int i = 0; i <= numberOfFields - 1; i++) {
+		for (int i = 0; i <numberOfFields; i++) {
 			switch (hexagons.get(i).color) {
 				case RED:
 					gameScore.scoreRed++;
