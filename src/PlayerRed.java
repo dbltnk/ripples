@@ -11,14 +11,14 @@ public class PlayerRed extends Player {
 		cards.add(new Card(actions3, Color.WHITE, "W:r/n/b/n/r/n"));
 		Action[] actions4 = { Action.FLIP, Action.FLIP, Action.FLIP, Action.FLIP, Action.BLUE, Action.BLUE };
 		cards.add(new Card(actions4, Color.RED, "R:f/f/f/f/b/b"));
-		Action[] actions5 = { Action.WHITE, Action.BLUE, Action.BLUE, Action.LINE_RED, Action.BLUE, Action.BLUE };
-		cards.add(new Card(actions5, Color.RED, "R:w/b/b/lr/b/b"));
-		Action[] actions6 = { Action.BLUE, Action.LINE_FLIP, Action.BLUE, Action.LINE_FLIP, Action.BLUE, Action.LINE_FLIP };
-		cards.add(new Card(actions6, Color.RED, "R:b/lf/b/lf/b/lf"));
+		Action[] actions5 = { Action.WHITE, Action.BLUE, Action.RED, Action.WHITE, Action.BLUE, Action.RED };
+		cards.add(new Card(actions5, Color.RED, "R:w/b/r/w/b/r"));
+		Action[] actions6 = { Action.RED, Action.FLIP, Action.BLUE, Action.RED, Action.BLUE, Action.FLIP };
+		cards.add(new Card(actions6, Color.RED, "R:r/f/b/r/b/b"));
 		Action[] actions7 = { Action.RED, Action.BLUE, Action.RED, Action.BLUE, Action.RED, Action.BLUE };
 		cards.add(new Card(actions7, Color.RED, "R:r/b/r/b/r/b"));
-		Action[] actions8 = { Action.WHITE, Action.NOTHING, Action.LINE_FLIP, Action.RED, Action.BLUE, Action.BLUE };
-		cards.add(new Card(actions8, Color.RED, "R:w/n/lf/r/b/b"));
+		Action[] actions8 = { Action.WHITE, Action.NOTHING, Action.FLIP, Action.RED, Action.BLUE, Action.BLUE };
+		cards.add(new Card(actions8, Color.RED, "R:w/n/f/r/b/b"));
 	}
 
 }

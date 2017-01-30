@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 1000;
+	private static int gamesToPlay = 100;
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
 	private Player playerBlue = new PlayerBlue();
@@ -44,128 +44,12 @@ public class DayAndNight {
 		}
 	}
 
-	private static void Evaluate(List<Hexagon> playfield, Player playerRed, Player playerBlue) {
-		float redPower = 0;
-		float bluePower = 0;
-
-		// evaluate playfield
-		int redHexes = 0;
-		int blueHexes = 0;
-		int whiteHexes = 0;
-		for (Hexagon hex : playfield) {
-			switch (hex.color) {
-				case RED:
-					redHexes++;
-					break;
-				case BLUE:
-					blueHexes++;
-					break;
-				case WHITE:
-					whiteHexes++;
-					break;
-				default:
-					break;
-			}
-		}
-
-		// evaluate hands
-		float valueHandRed = evaluateHand(playerRed);
-		float valueHandBlue = evaluateHand(playerBlue);
-
-		// calculate power
-		redPower = redHexes - blueHexes + valueHandRed - valueHandBlue;
-		bluePower = blueHexes - redHexes + valueHandBlue - valueHandRed;
-		System.out.println("Red player power level: " + redPower);
-		System.out.println("Blue player power level: " + bluePower);
-	}
-
-	private static float evaluateHand(Player player) {
-		float valuePlayerColor = 1f;
-		float valueOpponentColor = -1f;
-		float valueWhite = 0f;
-		float valueFlip = 0.5f;
-		float valueNothing = 0f;
-		float lineHexAffectExpectation = 4f;
-
-		Color playerColor = player.color;
-		float handValue = 0;
-		for (Card card : player.cards) {
-			float cardValue = 0;
-			switch (card.getColor()) {
-				case RED:
-					cardValue = cardValue + valuePlayerColor;
-					break;
-				case BLUE:
-					cardValue = cardValue + valueOpponentColor;
-					break;
-				case WHITE:
-					cardValue = cardValue + valueWhite;
-					break;
-				default:
-					break;
-			}
-			for (Action action : card.getActions()) {
-				switch (action) {
-					case RED:
-						if (playerColor == Color.RED) {
-							cardValue = cardValue + valuePlayerColor;
-						}
-						else {
-							cardValue = cardValue + valueOpponentColor;
-						}
-						break;
-					case BLUE:
-						if (playerColor == Color.RED) {
-							cardValue = cardValue + valueOpponentColor;
-						}
-						else {
-							cardValue = cardValue + valuePlayerColor;
-						}
-						break;
-					case WHITE:
-						cardValue = cardValue + valueWhite;
-						break;
-					case FLIP:
-						cardValue = cardValue + valueFlip;
-						break;
-					case NOTHING:
-						cardValue = cardValue + valueNothing;
-						break;
-					case LINE_RED:
-						if (playerColor == Color.RED) {
-							cardValue = cardValue + valuePlayerColor * lineHexAffectExpectation;
-						}
-						else {
-							cardValue = cardValue + valueOpponentColor * lineHexAffectExpectation;
-						}
-						break;
-					case LINE_BLUE:
-						if (playerColor == Color.RED) {
-							cardValue = cardValue + valueOpponentColor * lineHexAffectExpectation;
-						}
-						else {
-							cardValue = cardValue + valuePlayerColor * lineHexAffectExpectation;
-						}
-						break;
-					case LINE_FLIP:
-						cardValue = cardValue + valueFlip * lineHexAffectExpectation;
-						break;
-					default:
-						break;
-				}
-			}
-			//System.out.println("Card value: " + cardValue);
-			handValue += cardValue;
-		}
-		//System.out.println("Hand value: " + handValue);
-		return handValue;
-	}
-
 	private DayAndNight() {
 		SetupPlayfield();
 	}
 
-    private GameScore playGame() {
+	private GameScore playGame() {
+
 		List<Player> turnOrder = new ArrayList<>();
 		turnOrder.add(playerRed);
 		turnOrder.add(playerBlue);
@@ -302,6 +186,123 @@ public class DayAndNight {
 		else {
 			return blueHexes - redHexes;
 		}
+	}
+
+	private static void Evaluate(List<Hexagon> playfield, Player playerRed, Player playerBlue) {
+		float redPower = 0;
+		float bluePower = 0;
+
+		// evaluate playfield
+		int redHexes = 0;
+		int blueHexes = 0;
+		int whiteHexes = 0;
+		for (Hexagon hex : playfield) {
+			switch (hex.color) {
+				case RED:
+					redHexes++;
+					break;
+				case BLUE:
+					blueHexes++;
+					break;
+				case WHITE:
+					whiteHexes++;
+					break;
+				default:
+					break;
+			}
+		}
+
+		// evaluate hands
+		float valueHandRed = evaluateHand(playerRed);
+		float valueHandBlue = evaluateHand(playerBlue);
+
+		// calculate power
+		redPower = redHexes - blueHexes + valueHandRed - valueHandBlue;
+		bluePower = blueHexes - redHexes + valueHandBlue - valueHandRed;
+		System.out.println("Red player power level: " + redPower);
+		System.out.println("Blue player power level: " + bluePower);
+	}
+
+	private static float evaluateHand(Player player) {
+		float valuePlayerColor = 1f;
+		float valueOpponentColor = -1f;
+		float valueWhite = 0f;
+		float valueFlip = 0.5f;
+		float valueNothing = 0f;
+		float lineHexAffectExpectation = 4f;
+
+		Color playerColor = player.color;
+		float handValue = 0;
+		for (Card card : player.cards) {
+			float cardValue = 0;
+			switch (card.getColor()) {
+				case RED:
+					cardValue = cardValue + valuePlayerColor;
+					break;
+				case BLUE:
+					cardValue = cardValue + valueOpponentColor;
+					break;
+				case WHITE:
+					cardValue = cardValue + valueWhite;
+					break;
+				default:
+					break;
+			}
+			for (Action action : card.getActions()) {
+				switch (action) {
+					case RED:
+						if (playerColor == Color.RED) {
+							cardValue = cardValue + valuePlayerColor;
+						}
+						else {
+							cardValue = cardValue + valueOpponentColor;
+						}
+						break;
+					case BLUE:
+						if (playerColor == Color.RED) {
+							cardValue = cardValue + valueOpponentColor;
+						}
+						else {
+							cardValue = cardValue + valuePlayerColor;
+						}
+						break;
+					case WHITE:
+						cardValue = cardValue + valueWhite;
+						break;
+					case FLIP:
+						cardValue = cardValue + valueFlip;
+						break;
+					case NOTHING:
+						cardValue = cardValue + valueNothing;
+						break;
+					case LINE_RED:
+						if (playerColor == Color.RED) {
+							cardValue = cardValue + valuePlayerColor * lineHexAffectExpectation;
+						}
+						else {
+							cardValue = cardValue + valueOpponentColor * lineHexAffectExpectation;
+						}
+						break;
+					case LINE_BLUE:
+						if (playerColor == Color.RED) {
+							cardValue = cardValue + valueOpponentColor * lineHexAffectExpectation;
+						}
+						else {
+							cardValue = cardValue + valuePlayerColor * lineHexAffectExpectation;
+						}
+						break;
+					case LINE_FLIP:
+						cardValue = cardValue + valueFlip * lineHexAffectExpectation;
+						break;
+					default:
+						break;
+				}
+			}
+			//System.out.println("Card value: " + cardValue);
+			handValue += cardValue;
+		}
+		//System.out.println("Hand value: " + handValue);
+		return handValue;
 	}
 
 	private Player selectNextPlayer(Player currentPlayer) {
@@ -463,15 +464,18 @@ public class DayAndNight {
 
 	private String renderPlayfield(List<Hexagon> playfield) {
 		//System.out.print(" ");
-		for (int z = -2; z <= 2; z++) {
-			for (int x = -2; x <= 2; x++) {
+		for (int z = -3; z <= 3; z++) {
+			for (int x = -3; x <= 3; x++) {
 				for (Hexagon hexagon : playfield) {
 					if (hexagon.getX() == x && hexagon.getZ() == z) {
-						if (playfield.indexOf(hexagon) == 0 || playfield.indexOf(hexagon) == 16) {
-							System.out.print("  ");
-						}
-						if (playfield.indexOf(hexagon) == 3 || playfield.indexOf(hexagon) == 12) {
+						if (playfield.indexOf(hexagon) == 9 || playfield.indexOf(hexagon) == 22) {
 							System.out.print(" ");
+						}
+						if (playfield.indexOf(hexagon) == 4 || playfield.indexOf(hexagon) == 28) {
+							System.out.print("   ");
+						}
+						if (playfield.indexOf(hexagon) == 0 || playfield.indexOf(hexagon) == 33) {
+							System.out.print("     ");
 						}
 						switch (hexagon.color) {
 							case RED:
@@ -520,6 +524,7 @@ public class DayAndNight {
 
 	private void SetupPlayfield() {
 		// larger field, 37 hexes
+
 		hexagons.add(new Hexagon(0, 3, -3));
 		hexagons.add(new Hexagon(1, 2, -3));
 		hexagons.add(new Hexagon(2, 1, -3));
@@ -563,6 +568,7 @@ public class DayAndNight {
 		hexagons.add(new Hexagon(-2, -1, 3));
 		hexagons.add(new Hexagon(-1, -2, 3));
 		hexagons.add(new Hexagon(0, -3, 3));
+
 
 		// normal field, 19 hexes
 		/*
