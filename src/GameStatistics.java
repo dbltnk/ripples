@@ -28,15 +28,16 @@ public class GameStatistics {
 		double averageWinsBlue = winsBlue / totalGamesPlayed ;
 		double averageDraws = draws / totalGamesPlayed;
 
-		System.out.println("Statistics");
+		System.out.println("Statistics:");
 		System.out.println("Games Played: " + totalGamesPlayed);
-		System.out.println("White Tiles Total: " + totalScoreWhite + "\tWhite Tiles Average: " + averageScoreWhite);
+		System.out.println("-------------");
 		System.out.println("Red Tiles Total: " + totalScoreRed + "\tRed Tiles Average: " + averageScoreRed);
 		System.out.println("Blue Tiles Total: " + totalScoreBlue + "\tBlue Tiles Average: " + averageScoreBlue);
-
-		System.out.println("Red Victories: " + winsRed + "\tRed Win Rate: " + averageWinsRed);
-		System.out.println("Blue Victories: " + winsBlue + "\tBlue Win Rate: " + averageWinsBlue);
-		System.out.println("Draws: " + draws + "\tDraw Rate: " + averageDraws);
+		System.out.println("White Tiles Total: " + totalScoreWhite + "\tWhite Tiles Average: " + averageScoreWhite);
+		System.out.println("-------------");
+		System.out.println("Red Victories: " + winsRed + "\tRed Win Rate: " + averageWinsRed * 100f + "%");
+		System.out.println("Blue Victories: " + winsBlue + "\tBlue Win Rate: " + averageWinsBlue * 100f + "%");
+		System.out.println("Draws: " + draws + "\tDraw Rate: " + averageDraws * 100f + "%");
 	}
 
 }

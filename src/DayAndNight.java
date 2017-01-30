@@ -5,13 +5,13 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 1;
-
+	private static int gamesToPlay = 100;
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
 	private Player playerBlue = new PlayerBlue();
 	private Random random = new Random();
 	private GameScore gameScore = new GameScore();
+	static CardStatistics cardStatistics = new CardStatistics();
 
     private Coordinate[] directions = {
 		new Coordinate(+1, -1,  0), new Coordinate(+1,  0, -1), new Coordinate( 0, +1, -1),
@@ -40,6 +40,7 @@ public class DayAndNight {
 		}
 		if (gamesToPlay > 1) {
 			statistics.showStatistics();
+			cardStatistics.showStatistics();
 		}
 	}
 
@@ -235,12 +236,23 @@ public class DayAndNight {
 		makeSelectedMove(moveToMake.hex, moveToMake.card, moveToMake.rotationOffset);
 		currentPlayer.cards.remove(moveToMake.card);
 
-		//debug code for single games, comment out if many games
-		System.out.println("-----------------");
-		System.out.println(currentPlayer.color.toString() + " plays card: " + moveToMake.card.getName());
-		renderPlayfield(hexagons);
-		System.out.println("Red: " + EvaluatePlayfield(hexagons, playerRed) + " Blue: " + EvaluatePlayfield(hexagons, playerBlue));
-		System.out.println("-----------------");
+		String cardName = moveToMake.card.getName();
+		if (cardStatistics.stats.containsKey(cardName)) {
+			int oldValue = cardStatistics.stats.get(cardName).intValue();
+			cardStatistics.stats.put(cardName, oldValue + moveToMake.scoreChange);
+		}
+		else {
+			cardStatistics.stats.put(cardName, moveToMake.scoreChange);
+		}
+
+		//debug code for single games
+		if (gamesToPlay == 1) {
+			System.out.println("-----------------");
+			System.out.println(currentPlayer.color.toString() + " plays card: " + moveToMake.card.getName());
+			renderPlayfield(hexagons);
+			System.out.println("Red: " + EvaluatePlayfield(hexagons, playerRed) + " Blue: " + EvaluatePlayfield(hexagons, playerBlue));
+			System.out.println("-----------------");
+		}
 	}
 
 	private int EvaluatePlayfield(List<Hexagon> playfield, Player currentPlayer) {
