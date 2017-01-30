@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 100;
+	private static int gamesToPlay = 1;
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
 	private Player playerBlue = new PlayerBlue();
@@ -498,6 +498,53 @@ public class DayAndNight {
 	}
 
 	private void SetupPlayfield() {
+		// larger field, 37 hexes
+		hexagons.add(new Hexagon(0, 3, -3));
+		hexagons.add(new Hexagon(1, 2, -3));
+		hexagons.add(new Hexagon(2, 1, -3));
+		hexagons.add(new Hexagon(3, 0, -3));
+
+		hexagons.add(new Hexagon(-1, 3, -2));
+		hexagons.add(new Hexagon(0, 2, -2));
+		hexagons.add(new Hexagon(1, 1, -2));
+		hexagons.add(new Hexagon(2, 0, -2));
+		hexagons.add(new Hexagon(3, -1, -2));
+
+		hexagons.add(new Hexagon(-2, 3, -1));
+		hexagons.add(new Hexagon(-1, 2, -1));
+		hexagons.add(new Hexagon(0, 1, -1));
+		hexagons.add(new Hexagon(1, 0, -1));
+		hexagons.add(new Hexagon(2, -1, -1));
+		hexagons.add(new Hexagon(3, -2, -1));
+
+		hexagons.add(new Hexagon(-3, 3, 0));
+		hexagons.add(new Hexagon(-2, 2, 0));
+		hexagons.add(new Hexagon(-1, 1, 0));
+		hexagons.add(new Hexagon(0, 0, 0));
+		hexagons.add(new Hexagon(1, -1, 0));
+		hexagons.add(new Hexagon(2, -2, 0));
+		hexagons.add(new Hexagon(3, -3, 0));
+
+		hexagons.add(new Hexagon(-3, 2, 1));
+		hexagons.add(new Hexagon(-2, 1, 1));
+		hexagons.add(new Hexagon(-1, 0, 1));
+		hexagons.add(new Hexagon(0, -1, 1));
+		hexagons.add(new Hexagon(1, -2, 1));
+		hexagons.add(new Hexagon(2, -3, 1));
+
+		hexagons.add(new Hexagon(-3, 1, 2));
+		hexagons.add(new Hexagon(-2, 0, 2));
+		hexagons.add(new Hexagon(-1, -1, 2));
+		hexagons.add(new Hexagon(0, -2, 2));
+		hexagons.add(new Hexagon(1, -3, 2));
+
+		hexagons.add(new Hexagon(-3, 0, 3));
+		hexagons.add(new Hexagon(-2, -1, 3));
+		hexagons.add(new Hexagon(-1, -2, 3));
+		hexagons.add(new Hexagon(0, -3, 3));
+
+		// normal field, 19 hexes
+		/*
 		hexagons.add(new Hexagon(0, 2, -2));
 		hexagons.add(new Hexagon(1, 1, -2));
 		hexagons.add(new Hexagon(2, 0, -2));
@@ -521,6 +568,7 @@ public class DayAndNight {
 		hexagons.add(new Hexagon(-2, 0, 2));
 		hexagons.add(new Hexagon(-1, -1, 2));
 		hexagons.add(new Hexagon(0, -2, 2));
+		*/
 
 		// only for testing, should be deactivated
 		/*
