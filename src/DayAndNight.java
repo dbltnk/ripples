@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DayAndNight {
-	private static int gamesToPlay = 1;
+	private static int gamesToPlay = 1000;
 	private List<Hexagon> hexagons = new ArrayList<>();
 	private Player playerRed = new PlayerRed();
 	private Player playerBlue = new PlayerBlue();
@@ -166,12 +166,33 @@ public class DayAndNight {
 	}
 
     private GameScore playGame() {
+		List<Player> turnOrder = new ArrayList<>();
+		turnOrder.add(playerRed);
+		turnOrder.add(playerBlue);
+		turnOrder.add(playerRed);
+		turnOrder.add(playerBlue);
+		turnOrder.add(playerBlue);
+		turnOrder.add(playerRed);
+		turnOrder.add(playerBlue);
+		turnOrder.add(playerRed);
+		Player currentPlayer;
+
+		for (int i = 0; i < turnOrder.size(); i++) {
+			currentPlayer = turnOrder.get(i);
+			makeInformedDecision(currentPlayer);
+			//playCardRandomly(currentPlayer);
+		}
+
+		// old turn order
+		/*
 		Player currentPlayer = playerRed;
 		do {
 			//playCardRandomly(currentPlayer);
 			makeInformedDecision(currentPlayer);
 			currentPlayer = selectNextPlayer(currentPlayer);
 		} while (playerRed.hasCards() || playerBlue.hasCards());
+		*/
+
 		scorePlayfield();
 		return gameScore;
 	}

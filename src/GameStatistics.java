@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 public class GameStatistics {
 	List<GameScore> gameScores = new ArrayList<GameScore>();
@@ -28,6 +29,11 @@ public class GameStatistics {
 		double averageWinsBlue = winsBlue / totalGamesPlayed ;
 		double averageDraws = draws / totalGamesPlayed;
 
+		DecimalFormat df = new DecimalFormat("#.##");
+		String formattedWinsRed = df.format(averageWinsRed * 100f);
+		String formattedWinsBlue = df.format(averageWinsBlue * 100f);
+		String formattedDraws = df.format(averageDraws * 100f);
+
 		System.out.println("Statistics:");
 		System.out.println("Games Played: " + totalGamesPlayed);
 		System.out.println("-------------");
@@ -35,9 +41,9 @@ public class GameStatistics {
 		System.out.println("Blue Tiles Total: " + totalScoreBlue + "\tBlue Tiles Average: " + averageScoreBlue);
 		System.out.println("White Tiles Total: " + totalScoreWhite + "\tWhite Tiles Average: " + averageScoreWhite);
 		System.out.println("-------------");
-		System.out.println("Red Victories: " + winsRed + "\tRed Win Rate: " + averageWinsRed * 100f + "%");
-		System.out.println("Blue Victories: " + winsBlue + "\tBlue Win Rate: " + averageWinsBlue * 100f + "%");
-		System.out.println("Draws: " + draws + "\tDraw Rate: " + averageDraws * 100f + "%");
+		System.out.println("Red Victories: " + winsRed + "\tRed Win Rate: " + formattedWinsRed  + "%");
+		System.out.println("Blue Victories: " + winsBlue + "\tBlue Win Rate: " + formattedWinsBlue + "%");
+		System.out.println("Draws: " + draws + "\tDraw Rate: " + formattedDraws + "%");
 	}
 
 }
